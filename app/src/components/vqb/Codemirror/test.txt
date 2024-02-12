@@ -1,0 +1,73 @@
+{/* <TextField
+        id="outlined-multiline-field"
+        error={error}
+        helperText={helperText}
+        multiline
+        // InputProps={{
+        //   endAdornment: (
+        //     <InputAdornment position="end">
+        //       <SpeedDial
+        //         onMouseLeave={() => {
+        //           setAnchorEl(null);
+        //         }}
+        //         direction="down"
+        //         ariaLabel="AI options"
+        //         icon={<AutoAwesomeIcon />}
+        //         sx={{
+        //           position: "relative",
+        //           marginRight: -2.5,
+        //           marginTop: 29.5,
+        //           "& .MuiFab-primary": {
+        //             background: "white",
+        //             color: "gray",
+        //             border: 0,
+        //             width: 35,
+        //             height: 35,
+        //             minWidth: 20,
+        //             minHeight: 20,
+        //           },
+        //         }}
+        //       >
+        //         {aiOptions.map((option) => {
+        //           return (
+        //             <SpeedDialAction
+        //               key={option.name}
+        //               icon={option.icon}
+        //               tooltipTitle={option.name}
+        //               onClick={(event) => {
+        //                 option.name === "Generate"
+        //                   ? handleAiSelect(event)
+        //                   : option.name === "Validate"
+        //                   ? handleValidate()
+        //                   : option.name === "Convert"
+        //                   ? handleConvert()
+        //                   : option.name === "Optimize"
+        //                   ? handleOptimize()
+        //                   : handleOptimize();
+        //               }}
+        //             />
+        //           );
+        //         })}
+        //         <AiOptionPopper
+        //           setError={setError}
+        //           anchorEl={anchorEl}
+        //           setInput={setInput}
+        //         />
+        //       </SpeedDial>
+        //     </InputAdornment>
+        //   ),
+        // }}
+        onChange={(event) => {
+          setInput(event.target.value);
+        }}
+        value={sqlInput}
+        variant="outlined"
+        fullWidth
+        sx={{
+          position: "relative",
+          background: "white",
+          borderLeft: 2,
+          borderTop: 2,
+          height: 200,
+        }}
+      /> */}

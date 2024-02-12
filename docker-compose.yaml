@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./backend
+    image: api
+    container_name: api
+    command: ["uvicorn", "api:app", "--reload", "--host", "0.0.0.0"]
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend:/api
+    environment:
+      OPENAI_API_KEY: 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
+      LANGCHAIN_API_KEY: ls__bcfd81f0c5ff4964b1eb7797706f7cdf
+      LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
+      LANGCHAIN_PROJECT: sql_llm
+
+  frontend:
+    depends_on:
+      - api
+    build: ./app
+    image: frontend
+    container_name: frontend
+    command: ["npm", "start"]
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app:/frontend
