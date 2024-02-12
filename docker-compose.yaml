@@ -11,8 +11,8 @@ services:
     volumes:
       - ./backend:/api
     environment:
-      OPENAI_API_KEY: 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
-      LANGCHAIN_API_KEY: ls__bcfd81f0c5ff4964b1eb7797706f7cdf
+      OPENAI_API_KEY: ""
+      LANGCHAIN_API_KEY: ""
       LANGCHAIN_ENDPOINT: https://api.smith.langchain.com
       LANGCHAIN_PROJECT: sql_llm
 
