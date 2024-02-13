@@ -1,14 +1,11 @@
 from langchain.output_parsers import PydanticOutputParser
 from langchain.prompts import PromptTemplate
 from langchain_openai import OpenAI
-import dotenv
 from pydantic.v1 import BaseModel, Field
 from langchain.tools import Tool, StructuredTool
 from llms.handlers import ChatModelStartHandler
-from llms.models import SQLQuery, Columns_to_join
+from llms.models import SQLQuery, Verified_Query
 from typing import List, Dict
-
-dotenv.load_dotenv()
 
 
 def get_databases_query(technology: str):
@@ -261,16 +258,18 @@ def validate_query(query: str):
         temperature=0.0,
         callbacks=[ChatModelStartHandler()],
     )
-    parser = PydanticOutputParser(pydantic_object=SQLQuery)
+    parser = PydanticOutputParser(pydantic_object=Verified_Query)
     prompt = PromptTemplate(
-        template="""You need to validate if the following sql query: {query} is valid for execution in Snowflake. 
+        template="""You need to validate if the following sql query: {query} is valid for execution in Snowflake.\n
+                    If query is invalid, please return the reason in Info and return valid query inside 'valid_query'\n
                     Use dot notation with one dot. \n{format_instructions}\n""",
         input_variables=["query"],
         partial_variables={"format_instructions": parser.get_format_instructions()},
     )
     prompt_and_model = prompt | model
     output = prompt_and_model.invoke({"query": query})
-    parsed_output = SQLQuery.model_validate(parser.invoke(output))
+    print("output goes here: ", output)
+    parsed_output = Verified_Query.model_validate(parser.invoke(output))
     return parsed_output.sql_query
 
 

@@ -1,7 +1,5 @@
 from fastapi import FastAPI
 from llms.llms import get_llm_response, get_select_query, get_join_query, validate_query
-from clients import snowflake_get_dbs
-from llms.utils import get_schemas
 from fastapi.middleware.cors import CORSMiddleware
 from llms.models import GenerationSchema, ValidateQuery
 

@@ -23,6 +23,7 @@ from llms.tools import (
 )
 from llms.models import GenerationSchema
 
+
 tools = [
     get_databases_query_tool,
     get_schemas_query_tool,
@@ -184,12 +185,16 @@ def validate_query(query: str):
         name="is_query_valid",
         description="True if the sql query is valid. Otherwise, False.",
     )
+    info = ResponseSchema(
+        name="info",
+        description="Brief description of why the query is invalid.",
+    )
     valid_query = ResponseSchema(
         name="valid_query",
         description="If query is invalid, returns corrected query is returned here.",
     )
     output_parser = StructuredOutputParser.from_response_schemas(
-        [is_query_valid, valid_query]
+        [is_query_valid, valid_query, info]
     )
     response_format = output_parser.get_format_instructions()
     prompt = ChatPromptTemplate(
@@ -218,7 +223,8 @@ def validate_query(query: str):
     )
     datasource = "Snowflake"
     output = agent_executor(
-        f"""Is the following sql query: {query}, valid for execution in {datasource}. 
+        f"""Is the following sql query: {query}, valid for execution in {datasource}.\n
+            If query is invalid, please return the reason in Info.
         {response_format}
         """
     )

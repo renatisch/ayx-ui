@@ -132,10 +132,10 @@ export default function SqlEditorView() {
           .replace(/\s{2,}/g, " ")
           .replace(/(\r\n|\n|\r)/gm, " "),
       };
-      console.log(payload);
       instance
         .post("/validate", payload)
         .then((response) => {
+          console.log(response);
           const response_data: ValidateApiResponse = response.data.response;
           if (response_data.is_query_valid === "False") {
             setError(true);

@@ -29,3 +29,11 @@ class Columns_to_join(BaseModel):
 
 class ValidateQuery(BaseModel):
     query: str
+
+
+class Verified_Query(BaseModel):
+    sql_query: str = Field(description="sql query to be validated")
+    valid_query: str = Field(description="valid sql query")
+    info: str = Field(
+        description="If query is invalid. Provide a reason why it is invalid."
+    )

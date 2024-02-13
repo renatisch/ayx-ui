@@ -36,7 +36,7 @@ export const DialogContext = createContext<DialogContextPrompts>({
 
 function App() {
   const [selectedTool, setSelectedTool] = useState("");
-  const [dialogType, setDialogType] = useState("vqb");
+  const [dialogType, setDialogType] = useState("dataConnectorsDialog");
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [selectedView, setSelectedView] = useState("dataSources");
   const [connection, setConnection] = useState("");
